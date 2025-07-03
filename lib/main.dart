@@ -1,9 +1,11 @@
 import 'dart:math';
 import 'package:dart_collections_journey/names.dart';
+import 'package:word_generator/word_generator.dart';
 
 void main() {
   runTask1();
   runTask2();
+  runTask3();
 }
 
 void runTask1() {
@@ -25,7 +27,7 @@ void runTask1() {
     }
   }
 
-  print('Сума всіх елементів, що діляться на 3 без залишку: ${total}');
+  print('Сума всіх елементів, що діляться на 3 без залишку: $total');
 
   List<int> temp = [];
 
@@ -48,8 +50,34 @@ void runTask2() {
   print('Кількість елементів у множині unionNames: ${unionNames.length}');
 
   final Set<String> diffUniqueNames1 = uniqueNames1.difference(uniqueNames2);
-  print('Імена uniqueNames1, яких немає в uniqueNames2: ${diffUniqueNames1}');
+  print('Імена uniqueNames1, яких немає в uniqueNames2: $diffUniqueNames1');
 
   final Set<String> diffUniqueNames2 = uniqueNames2.difference(uniqueNames1);
-  print('Імена uniqueNames2, яких немає в uniqueNames1: ${diffUniqueNames2}');
+  print('Імена uniqueNames2, яких немає в uniqueNames1: $diffUniqueNames2');
+}
+
+void runTask3() {
+  print('------------------- Task 3 -------------------');
+
+  final wordGenerator = WordGenerator();
+
+  List<String> nounsList = wordGenerator.randomNouns(50);
+
+  Map<String, int> nounsMap = { 
+    for (var e in nounsList) e: e.length
+  };
+
+  // Map<String, int> tempNouns = {
+  //   for (var e in nounsMap.entries) if (e.value % 2 == 0) e.key: e.value
+  // };
+
+  Map<String, int> tempNouns = {};
+
+  nounsMap.forEach((key, value) {
+    if (value % 2 == 0) {
+      tempNouns.addAll({key: value});
+    }
+  });
+
+  print(tempNouns.keys.join(', '));
 }
