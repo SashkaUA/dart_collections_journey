@@ -11,13 +11,13 @@ void main() {
 void runTask1() {
   print('------------------- Task 1 -------------------');
 
-  List<int> numbers = List.generate(100, (index) => Random().nextInt(101));
+  final List<int> numbers = List.generate(100, (index) => Random().nextInt(101));
 
   print(numbers);
   print('65-й елемент: ${numbers[64]}');
 
   numbers.insert(49, 1000000000);
-  numbers.removeWhere((value) => [24, 45, 66, 88].contains(value));
+  numbers.removeWhere([24, 45, 66, 88].contains);
 
   int total = 0;
 
@@ -67,6 +67,7 @@ void runTask3() {
     for (var e in nounsList) e: e.length
   };
 
+  // Alternative solution to task # 3 (items 4-5)
   // Map<String, int> tempNouns = {
   //   for (var e in nounsMap.entries) if (e.value % 2 == 0) e.key: e.value
   // };
